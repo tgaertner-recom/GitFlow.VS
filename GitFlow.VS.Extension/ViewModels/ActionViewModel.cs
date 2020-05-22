@@ -25,13 +25,15 @@ namespace GitFlowVS.Extension.ViewModels
         private string releaseName;
         private string hotfixName;
 
-        private bool pullRequestBranch;
-        private string pullRequestTitle;
+        private bool featurePullRequestBranch;
+        private string featurePullRequestTitle;
         private bool featureRebaseOnDevelopmentBranch;
         private bool featureDeleteLocalBranch;
         private bool featureDeleteRemoteBranch;
         private bool featureSquash;
         private bool featureNoFastForward;
+        private bool bugFixPullRequestBranch;
+        private string bugFixPullRequestTitle;
         private bool bugfixRebaseOnDevelopmentBranch;
         private bool bugfixDeleteLocalBranch;
         private bool bugfixDeleteRemoteBranch;
@@ -89,13 +91,14 @@ namespace GitFlowVS.Extension.ViewModels
         public ActionViewModel(GitFlowActionSection te)
             : base(te)
         {
-            PullRequestBranch = true;
+            FeaturePullRequestBranch = true;
             FeatureDeleteLocalBranch = false;
             FeatureDeleteRemoteBranch = false;
             FeatureSquash = false;
             FeatureNoFastForward = false;
-            BugfixDeleteLocalBranch = true;
-            BugfixDeleteRemoteBranch = true;
+            BugFixPullRequestBranch = true;
+            BugfixDeleteLocalBranch = false;
+            BugfixDeleteRemoteBranch = false;
             BugfixSquash = false;
             BugfixNoFastForward = false;
             ReleaseDeleteBranch = true;
@@ -514,7 +517,10 @@ namespace GitFlowVS.Extension.ViewModels
                     UpdateMenus();
                     HideAll();
                     OnPropertyChanged("AllBugfixes");
-                    Te.Refresh();
+                    if (result.Success)
+                    {
+                        Te.Refresh();
+                    }
                 }
                 Logger.Metric("Duration-StartBugfix", (DateTime.Now - start).Milliseconds);
             }
@@ -642,8 +648,8 @@ namespace GitFlowVS.Extension.ViewModels
 
                 var properties = new Dictionary<string, string>
                 {
-                    {"PullRequest", PullRequestBranch.ToString()},
-                    {"PullRequestTitle", PullRequestTitle.ToString()},
+                    {"FeaturePullRequest", FeaturePullRequestBranch.ToString()},
+                    {"FeaturePullRequestTitle", FeaturePullRequestTitle.ToString()},
                     {"RebaseOnDevelopmentBranch", FeatureRebaseOnDevelopmentBranch.ToString()},
                     {"DeleteLocalBranch", FeatureDeleteLocalBranch.ToString()},
                     {"DeleteRemoteBranch", FeatureDeleteRemoteBranch.ToString()},
@@ -663,12 +669,12 @@ namespace GitFlowVS.Extension.ViewModels
                     {
                         ShowInfoMessage("Waiting for your editor to close the file...");
                     }
-                    var result = gf.FinishFeature(SelectedFeature.Name, PullRequestBranch, PullRequestTitle ,FeatureRebaseOnDevelopmentBranch, FeatureDeleteLocalBranch, FeatureDeleteRemoteBranch, FeatureSquash, FeatureNoFastForward);
+                    var result = gf.FinishFeature(SelectedFeature.Name, FeaturePullRequestBranch, FeaturePullRequestTitle, FeatureRebaseOnDevelopmentBranch, FeatureDeleteLocalBranch, FeatureDeleteRemoteBranch, FeatureSquash, FeatureNoFastForward);
                     if (!result.Success)
                     {
                         ShowErrorMessage(result);
                     }
-                    PullRequestTitle = string.Empty;
+                    FeaturePullRequestTitle = string.Empty;
                     HideProgressBar();
                     ShowFinishFeature = Visibility.Collapsed;
                     UpdateMenus();
@@ -697,6 +703,8 @@ namespace GitFlowVS.Extension.ViewModels
 
                 var properties = new Dictionary<string, string>
                 {
+                    {"BugFixPullRequest", BugFixPullRequestBranch.ToString()},
+                    {"BugFixPullRequestTitle", BugFixPullRequestTitle.ToString()},
                     {"RebaseOnDevelopmentBranch", BugfixRebaseOnDevelopmentBranch.ToString()},
                     {"DeleteLocalBranch", BugfixDeleteLocalBranch.ToString()},
                     {"DeleteRemoteBranch", BugfixDeleteRemoteBranch.ToString()},
@@ -712,18 +720,21 @@ namespace GitFlowVS.Extension.ViewModels
                     ShowProgressBar();
 
                     var gf = new VsGitFlowWrapper(GitFlowPage.ActiveRepoPath, GitFlowPage.OutputWindow);
-                    var result = gf.FinishBugfix(SelectedBugfix.Name, BugfixRebaseOnDevelopmentBranch, BugfixDeleteLocalBranch, BugfixDeleteRemoteBranch, BugfixSquash, BugfixNoFastForward);
+                    var result = gf.FinishBugfix(SelectedBugfix.Name, BugFixPullRequestBranch, BugFixPullRequestTitle, BugfixRebaseOnDevelopmentBranch, BugfixDeleteLocalBranch, BugfixDeleteRemoteBranch, BugfixSquash, BugfixNoFastForward);
                     if (!result.Success)
                     {
                         ShowErrorMessage(result);
                     }
-
+                    BugFixPullRequestTitle = string.Empty;
                     HideProgressBar();
                     ShowFinishBugfix = Visibility.Collapsed;
                     UpdateMenus();
                     HideAll();
                     OnPropertyChanged("AllBugfixes");
-                    Te.Refresh();
+                    if (result.Success)
+                    {
+                        Te.Refresh();
+                    }
                 }
 
                 Logger.Metric("Duration-FinishBugfix", (DateTime.Now - start).Milliseconds);
@@ -988,25 +999,25 @@ namespace GitFlowVS.Extension.ViewModels
         }
 
         #region Feature
-        public bool PullRequestBranch
+        public bool FeaturePullRequestBranch
         {
-            get { return pullRequestBranch; }
+            get { return featurePullRequestBranch; }
             set
             {
-                if (value.Equals(pullRequestBranch)) return;
-                pullRequestBranch = value;
+                if (value.Equals(featurePullRequestBranch)) return;
+                featurePullRequestBranch = value;
                 OnPropertyChanged();
             }
         }
 
         
-        public string PullRequestTitle
+        public string FeaturePullRequestTitle
         {
-            get { return pullRequestTitle; }
+            get { return featurePullRequestTitle; }
             set
             {
-                if (value.Equals(pullRequestTitle)) return;
-                pullRequestTitle = value;
+                if (value.Equals(featurePullRequestTitle)) return;
+                featurePullRequestTitle = value;
                 OnPropertyChanged();
             }
         }
@@ -1069,6 +1080,29 @@ namespace GitFlowVS.Extension.ViewModels
         #endregion
 
         #region Bugfix
+        public bool BugFixPullRequestBranch
+        {
+            get { return bugFixPullRequestBranch; }
+            set
+            {
+                if (value.Equals(bugFixPullRequestBranch)) return;
+                bugFixPullRequestBranch = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public string BugFixPullRequestTitle
+        {
+            get { return bugFixPullRequestTitle; }
+            set
+            {
+                if (value.Equals(bugFixPullRequestTitle)) return;
+                bugFixPullRequestTitle = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public bool BugfixRebaseOnDevelopmentBranch
         {
