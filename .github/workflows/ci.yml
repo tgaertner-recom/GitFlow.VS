@@ -1,0 +1,84 @@
+# This is a basic workflow to help you get started with Actions
+
+name: GitFlow.PR.CD.CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: 
+      - develop
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    env:
+        Solution_Path: GitFlow.VS.sln
+        Test_Project_Path: GitFlow.VS.Tests
+        Extension_Project_Path: GitFlow.VS.Extension
+        BuildConfiguration: 'VS2019'
+    
+    steps: 
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: fetch all history and tags from all branches for gitversion
+        run: git fetch --prune --unshallow
+
+      - name: install gitversion tool
+        uses: gittools/actions/gitversion/setup@v0.9
+        with:
+            versionSpec: '5.1.x'
+      
+      - name: execute gitversion
+        id: gitversion # step id used as reference for output values
+        uses: gittools/actions/gitversion/execute@v0.9
+        
+      - name: print gitversion
+        run: |
+          echo "Major: ${{ steps.gitversion.outputs.major }}"
+          echo "Minor: ${{ steps.gitversion.outputs.minor }}"
+          echo "Patch: ${{ steps.gitversion.outputs.patch }}"
+          echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
+          echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+
+      - name: Update manifest version
+        run: |
+          [xml]$manifest = get-content ".\$env:Extension_Project_Path\source.extension.2019.vsixmanifest"
+          $manifest.PackageManifest.Metadata.Identity.Version = "${{ steps.gitversion.outputs.majorMinorPatch }}"
+          $manifest.save(".\$env:Extension_Project_Path\source.extension.2019.vsixmanifest")
+
+      - name: Setup Nuget.exe
+        uses: warrenbuckley/Setup-Nuget@v1
+
+      - name: Restore packages
+        run: nuget restore $env:Solution_Path
+      
+      - name: Setup MSBuild.exe
+        uses: warrenbuckley/Setup-MSBuild@v1
+      
+      - name: Build with MSBuild
+        run: msbuild $env:Solution_Path /property:Configuration=$env:BuildConfiguration
+
+      - name: upload vsix as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
+          path: ${{ env.Extension_Project_Path }}\bin\${{ env.BuildConfiguration }}\*.vsix 
+      - name: upload README as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
+          path: README.md     
+      - name: upload manifest as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
+          path: extension.manifest.json   
+      - name: upload images as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
+          path: Images\*.*           
