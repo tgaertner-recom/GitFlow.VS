@@ -83,6 +83,20 @@ jobs:
         with:
           tag_name: v${{ steps.gitversion.outputs.semVer }}
           release_name: v${{ steps.gitversion.outputs.semVer }}
+          draft: true
+          prerelease: true
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.Extension_Project_Path }}\bin\${{ env.BuildConfiguration }}\GitFlowVS.2019.vsix
+          asset_name: GitFlow With PR ${{steps.gitversion.outputs.semVer}}.vsix
+          asset_content_type: application/zip          
+
       - name: Publish release to marketplace
         id: publish
         uses: mrluje/vs-marketplace-publisher@v2
