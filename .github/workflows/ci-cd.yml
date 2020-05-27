@@ -49,7 +49,14 @@ jobs:
           [xml]$manifest = get-content ".\$env:Extension_Project_Path\source.extension.2019.vsixmanifest"
           $manifest.PackageManifest.Metadata.Identity.Version = "${{ steps.gitversion.outputs.majorMinorPatch }}"
           $manifest.save(".\$env:Extension_Project_Path\source.extension.2019.vsixmanifest")
-
+          
+      - name: add version in CHANGELOG.md
+        uses: cschleiden/replace-tokens@v1.0
+        with:
+          files: '${{github.workspace}}/CHANGELOG.md'
+        env:
+          VERSION: "${{ steps.gitversion.outputs.semVer }}"
+          
       - name: Setup Nuget.exe
         uses: warrenbuckley/Setup-Nuget@v1
 
@@ -65,8 +72,8 @@ jobs:
       - name: upload vsix as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
-          path: ${{ env.Extension_Project_Path }}\bin\${{ env.BuildConfiguration }}\*.vsix 
+          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}.vsix
+          path: ${{ env.Extension_Project_Path }}\bin\${{ env.BuildConfiguration }}\GitFlowVS.2019.vsix 
       - name: upload README as artifact
         uses: actions/upload-artifact@v2
         with:
@@ -81,4 +88,13 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
-          path: Images\*.*           
+          path: Images\*.*      
+
+      - name: create a release
+        if: github.ref == 'refs/heads/master'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: v${{ steps.gitversion.outputs.semVer }}
+          release_name: v${{ steps.gitversion.outputs.semVer }}
