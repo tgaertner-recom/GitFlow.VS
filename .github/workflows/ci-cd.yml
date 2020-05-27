@@ -69,29 +69,21 @@ jobs:
       - name: Build with MSBuild
         run: msbuild $env:Solution_Path /property:Configuration=$env:BuildConfiguration
 
+      - name: Copy file
+        uses: canastro/copy-action@0.0.2
+        with:
+          # Source file
+          source: ${{ env.Extension_Project_Path }}\bin\${{ env.BuildConfiguration }}\GitFlowVS.2019.vsix 
+          # Target file
+          target: ${{ env.Extension_Project_Path }}\bin\${{ env.BuildConfiguration }}\GitFlow With PR ${{steps.gitversion.outputs.semVer}}.vsix 
       - name: upload vsix as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}.vsix
-          path: ${{ env.Extension_Project_Path }}\bin\${{ env.BuildConfiguration }}\GitFlowVS.2019.vsix 
-      - name: upload README as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
-          path: README.md     
-      - name: upload manifest as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
-          path: extension.manifest.json   
-      - name: upload images as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
-          path: Images\*.*      
+          name: GitFlow With PR ${{steps.gitversion.outputs.semVer}}.vsix
+          path: ${{ env.Extension_Project_Path }}\bin\${{ env.BuildConfiguration }}\GitFlow With PR ${{steps.gitversion.outputs.semVer}}.vsix 
 
       - name: create a release
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/develop'
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
