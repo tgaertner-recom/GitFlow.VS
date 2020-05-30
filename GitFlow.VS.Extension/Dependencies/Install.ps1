@@ -17,7 +17,7 @@ $gitLocation = Join-Path $gitInstallPath "bin"
 
 Write-Host "Copy binaries to Git installation directory " + $gitLocation
 
-Copy-Item -Path "$binaries\*.*" -Destination "$gitLocation" -Force -Verbose
+Copy-Item -Path "$binaries\*.*" -Destination "$gitLocation" -Force
 
 #Check if gitflow need to be installed
 #if(Test-Path (Join-Path $gitLocation "git-flow"))

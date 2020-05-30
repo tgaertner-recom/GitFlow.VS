@@ -8,7 +8,7 @@
         <GettingStartedGuide>http://blog.ehn.nu/2015/02/introducing-gitflow-for-visual-studio</GettingStartedGuide>
         <Icon>icon.png</Icon>
         <PreviewImage>icon.png</PreviewImage>
-        <Tags>VisualStudio git gitflow pullrequest TeamExplorer</Tags>
+        <Tags>VisualStudio Git GitFlow PullRequest TeamExplorer</Tags>
         <Preview>true</Preview>
     </Metadata>
     <Installation InstalledByMsi="false">
