@@ -99,7 +99,7 @@ jobs:
         uses: mrluje/vs-marketplace-publisher@v2
         with:
           # (Required) Personal access token to perform action on the VS Marketplace
-          pat: ${{ secrets.vs_pat }}
+          pat: ${{ secrets.VS_PAT }}
           # (Required) Path to the manifest used for the publish
           manifestPath: extension.manifest.json
           useLatestReleaseAsset: true
