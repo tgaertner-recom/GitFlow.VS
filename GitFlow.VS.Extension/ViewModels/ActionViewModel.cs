@@ -39,6 +39,8 @@ namespace GitFlowVS.Extension.ViewModels
         private bool bugfixDeleteRemoteBranch;
         private bool bugfixSquash;
         private bool bugfixNoFastForward;
+        private bool releasePullRequestBranch;
+        private string releasePullRequestTitle;
         private bool releaseDeleteBranch;
         private string releaseTagMessage;
         private bool releaseForceDeletion;
@@ -101,7 +103,8 @@ namespace GitFlowVS.Extension.ViewModels
             BugfixDeleteRemoteBranch = false;
             BugfixSquash = false;
             BugfixNoFastForward = false;
-            ReleaseDeleteBranch = true;
+            ReleasePullRequestBranch = true;
+            ReleaseDeleteBranch = false;
             ReleaseTagMessageSelected = true;
             ReleaseNoBackMerge = false;
             HotfixDeleteBranch = true;
@@ -753,6 +756,8 @@ namespace GitFlowVS.Extension.ViewModels
                 DateTime start = DateTime.Now;
                 var properties = new Dictionary<string, string>
                 {
+                    {"ReleasePullRequest", ReleasePullRequestBranch.ToString()},
+                    {"ReleasePullRequestTitle", ReleasePullRequestTitle.ToString()},
                     {"TaggedRelease", (!String.IsNullOrEmpty(ReleaseTagMessage)).ToString()},
                     {"DeleteBranch", ReleaseDeleteBranch.ToString()},
                     {"ForceDeletion", ReleaseForceDeletion.ToString()},
@@ -767,12 +772,12 @@ namespace GitFlowVS.Extension.ViewModels
                     ShowProgressBar();
 
                     var gf = new VsGitFlowWrapper(GitFlowPage.ActiveRepoPath, GitFlowPage.OutputWindow);
-                    var result = gf.FinishRelease(SelectedRelease.Name, ReleaseTagMessage, ReleaseDeleteBranch, ReleaseForceDeletion, ReleasePushChanges, ReleaseNoBackMerge);
+                    var result = gf.FinishRelease(SelectedRelease.Name, ReleasePullRequestBranch, ReleasePullRequestTitle, ReleaseTagMessage, ReleaseDeleteBranch, ReleaseForceDeletion, ReleasePushChanges, ReleaseNoBackMerge);
                     if (!result.Success)
                     {
                         ShowErrorMessage(result);
                     }
-
+                    ReleasePullRequestTitle = string.Empty;
                     HideAll();
                     HideProgressBar();
                     ShowFinishRelease = Visibility.Collapsed;
@@ -1161,17 +1166,29 @@ namespace GitFlowVS.Extension.ViewModels
         #endregion
 
         #region Release
-
-        public bool HotfixTagMessageSelected
+        public bool ReleasePullRequestBranch
         {
-            get { return hotfixTagMessageSelected; }
+            get { return releasePullRequestBranch; }
             set
             {
-                if (value.Equals(hotfixTagMessageSelected)) return;
-                hotfixTagMessageSelected = value;
+                if (value.Equals(releasePullRequestBranch)) return;
+                releasePullRequestBranch = value;
                 OnPropertyChanged();
             }
         }
+
+
+        public string ReleasePullRequestTitle
+        {
+            get { return releasePullRequestTitle; }
+            set
+            {
+                if (value.Equals(releasePullRequestTitle)) return;
+                releasePullRequestTitle = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public bool ReleaseTagMessageSelected
         {
@@ -1243,6 +1260,16 @@ namespace GitFlowVS.Extension.ViewModels
         #endregion
 
         #region Hotfix
+        public bool HotfixTagMessageSelected
+        {
+            get { return hotfixTagMessageSelected; }
+            set
+            {
+                if (value.Equals(hotfixTagMessageSelected)) return;
+                hotfixTagMessageSelected = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string HotfixTagMessage
         {
