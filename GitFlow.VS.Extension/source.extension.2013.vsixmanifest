@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="632375AC-F19B-4F7F-87C8-932B37D45CF2" Version="1.0.0" Language="en-US" Publisher="De Mennato Fernando (Proge-Software) fork by jakobehn" />
-        <DisplayName>GitFlow with PR for Visual Studio</DisplayName>
+        <Identity Id="632375AC-F19B-4F7F-87C8-932B37D45CF2" Version="1.0.0" Language="en-US" Publisher="Fernando De Mennato" />
+        <DisplayName>GitFlow with PR</DisplayName>
         <Description xml:space="preserve">Integrates GitFlow with PR in Visual Studio Team Explorer 2013. Requires VS 2013 Update 3 or higher</Description>
         <MoreInfo>https://github.com/proge-software/GitFlow.VS</MoreInfo>
         <License>License.rtf</License>

@@ -1,7 +1,7 @@
 ﻿<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="DA8B7280-9135-446D-8842-B747C35EA730" Version="1.0.0" Language="en-US" Publisher="De Mennato Fernando (Proge-Software) fork by jakobehn" />
-        <DisplayName>GitFlow with PR for Visual Studio 2015</DisplayName>
+        <Identity Id="DA8B7280-9135-446D-8842-B747C35EA730" Version="1.0.0" Language="en-US" Publisher="Fernando De Mennato" />
+        <DisplayName>GitFlow with PR</DisplayName>
         <Description xml:space="preserve">Integrates GitFlow with PR in Visual Studio Team Explorer 2015</Description>
         <MoreInfo>https://github.com/proge-software/GitFlow.VS</MoreInfo>
         <License>License.rtf</License>
