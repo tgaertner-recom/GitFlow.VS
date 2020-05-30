@@ -538,7 +538,7 @@ namespace GitFlow.VS
             return RunGitFlow(gitArguments);
         }
 
-        public GitFlowCommandResult FinishRelease(string releaseName, string tagMessage = null, bool deleteBranch = true, bool forceDeletion=false, bool pushChanges = false, bool releaseNoBackMerge = false)
+        public GitFlowCommandResult FinishRelease(string releaseName, bool pull_request = false, string titleMessage = null, string tagMessage = null, bool deleteBranch = true, bool forceDeletion=false, bool pushChanges = false, bool releaseNoBackMerge = false)
         {
             string gitArguments = "release finish \"" + TrimBranchName(releaseName) + "\"";
             if (!String.IsNullOrEmpty(tagMessage))
@@ -549,25 +549,33 @@ namespace GitFlow.VS
             {
                 gitArguments += " -n";
             }
-            if (!deleteBranch)
+            if (pull_request)
+                gitArguments += " -R";
+            else
             {
-                gitArguments += " -k";
-                if (forceDeletion)
+                if (!deleteBranch)
                 {
-                    gitArguments += " -D";
+                    gitArguments += " -k";
+                    if (forceDeletion)
+                    {
+                        gitArguments += " -D";
+                    }
                 }
+                if (pushChanges)
+                {
+                    gitArguments += " -p";
+                }
+                if (releaseNoBackMerge)
+                {
+                    gitArguments += " -b";
+                } 
             }
-            if (pushChanges)
+            if (!String.IsNullOrEmpty(titleMessage))
             {
-                gitArguments += " -p";
+                gitArguments += " -t \"" + titleMessage + "\"";
             }
-			if (releaseNoBackMerge)
-			{
-				gitArguments += " -b";
-			}
 
-
-			return RunGitFlow(gitArguments);
+            return RunGitFlow(gitArguments);
         }
 
         public GitFlowCommandResult StartHotfix(string hotfixName)
