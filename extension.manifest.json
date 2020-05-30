@@ -25,8 +25,8 @@
   ],
   "overview": "README.md",
   "priceCategory": "free",
-  "publisher": "vs-publisher-57624",
-  "private": false,
+  "publisher": "GitFlowv",
+  "private": true,
   "qna": true,
   "repo": "https://github.com/proge-software/GitFlow.VS"
 }
