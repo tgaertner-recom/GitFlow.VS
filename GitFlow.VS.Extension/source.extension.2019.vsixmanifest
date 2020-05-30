@@ -1,6 +1,6 @@
 ﻿<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="008E4F38-2AB2-4090-816B-B7211D83BBF7" Version="1.0.0" Language="en-US" Publisher="Fernando De Mennato" />
+        <Identity Id="008E4F38-2AB2-4090-816B-B7211D83BBF7" Version="1.0.0" Language="en-US" Publisher="Fernando De Mennato (Proge-Software)" />
         <DisplayName>GitFlow with PR</DisplayName>
         <Description xml:space="preserve">Integrates GitFlow with PR  in Visual Studio 2019</Description>
         <MoreInfo>https://github.com/proge-software/GitFlow.VS</MoreInfo>
@@ -8,7 +8,7 @@
         <GettingStartedGuide>http://blog.ehn.nu/2015/02/introducing-gitflow-for-visual-studio</GettingStartedGuide>
         <Icon>icon.png</Icon>
         <PreviewImage>icon.png</PreviewImage>
-        <Tags>VisualStudio git gitflow pullrequest TeamExplorer</Tags>
+        <Tags>VisualStudio Git GitFlow PullRequest TeamExplorer</Tags>
         <Preview>true</Preview>
     </Metadata>
     <Installation>
