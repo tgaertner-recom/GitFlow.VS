@@ -4,6 +4,7 @@
   "identity": {
     "internalName": "GitFlowWithPR"
   },
+  "overview": "README.md",
   "priceCategory": "free",
   "publisher": "GitFlow",
   "private": true,
