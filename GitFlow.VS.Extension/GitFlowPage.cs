@@ -98,6 +98,7 @@ namespace GitFlowVS.Extension
                 string gitFlowFile = Path.Combine(gitBinPath,"git-flow");
                 if (!File.Exists(gitFlowFile))
                     return false;
+                
                 return true;
             }
         }
