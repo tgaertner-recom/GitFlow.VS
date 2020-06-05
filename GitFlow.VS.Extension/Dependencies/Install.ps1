@@ -7,8 +7,22 @@ Param
 (
 	[Parameter(Mandatory=$True)] [string] $gitInstallPath
 )
-Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
+Read-Host -Prompt "Press Enter to continue"
+if (Get-Command 'az' -errorAction SilentlyContinue)
+{
+     Read-Host -Prompt "Press Enter to continue Azure Cli exists"
+     Write-Host "Azure Cli exists"
+}
+else
+{
+     Read-Host -Prompt "Press Enter to continue - Azure Cli not exists"
+     Write-Host "Azure Cli not exists"
+     Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
+}
+Read-Host -Prompt "Press Enter to continue Install azure-devops cli extension"
+Write-Host "Install azure-devops cli extension"
 az extension add --name azure-devops
+
 $installationPath = Split-Path $MyInvocation.MyCommand.Path
 $targetFolder = $installationPath
 $binaries = Join-Path $installationPath "binaries"
@@ -37,7 +51,7 @@ $p = New-Object System.Diagnostics.Process
 $p.StartInfo = $pinfo
 $p.Start() | Out-Null
 $p.WaitForExit() 
-
+Read-Host -Prompt "Press Enter to continue Installation done!"
 Write-Host "Installation done!"
 
 

@@ -21,10 +21,8 @@ if %ERR%==1 goto :End
 echo getopt.exe... Found
 
 if not exist "%GIT_HOME%\bin\git-flow" goto :Install
-echo GitFlow is already installed.>&2
-set /p mychoice="Do you want to replace it [y/n]"
-if "%mychoice%"=="y" goto :DeleteOldFiles
-goto :Abort
+goto :DeleteOldFiles
+
 
 :DeleteOldFiles
 echo Deleting old files...

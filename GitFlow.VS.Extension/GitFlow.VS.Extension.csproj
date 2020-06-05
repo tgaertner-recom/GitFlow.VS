@@ -682,7 +682,9 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Dependencies\gitflow\git-flow-pull-request" />
+    <Content Include="Dependencies\gitflow\git-flow-pull-request">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="source.extension.2017.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
