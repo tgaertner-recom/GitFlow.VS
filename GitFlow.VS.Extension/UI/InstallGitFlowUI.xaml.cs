@@ -1,12 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
+﻿using GitFlow.VS;
+using Microsoft.TeamFoundation.Controls;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using GitFlow.VS;
-using Microsoft.TeamFoundation.Controls;
-using Path = System.IO.Path;
 
 namespace GitFlowVS.Extension.UI
 {
@@ -45,33 +41,11 @@ namespace GitFlowVS.Extension.UI
             {
 	            Logger.Event("Install");
                 Error.Visibility = Visibility.Hidden;
-                var installationPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                string cmd = Path.Combine(installationPath, "Dependencies\\install.ps1");
+                var exitCode = GitFlowScriptInstallation.Install();
 
-                var gitInstallPath = GitHelper.GetGitInstallationPath();
-                if (Directory.Exists(Path.Combine(gitInstallPath, "usr")))
+                if (exitCode != 0)
                 {
-                    gitInstallPath = Path.Combine(gitInstallPath, "usr");
-                }
-
-                var proc = new Process
-                {
-                    StartInfo = new ProcessStartInfo
-                    {
-                        FileName = "powershell.exe",
-                        WorkingDirectory = Path.Combine(installationPath, "Dependencies"),
-                        UseShellExecute = true,
-                        Arguments = String.Format("-ExecutionPolicy ByPass -NoLogo -NoProfile -File \"" + cmd + "\" \"{0}\"", gitInstallPath),
-                        Verb = "runas",
-                        LoadUserProfile = false
-                    }
-                };
-                proc.Start();
-                proc.WaitForExit();
-
-                if (proc.ExitCode != 0)
-                {
-                    Error.Text = Error.Text.Replace("{0}", proc.ExitCode.ToString());
+                    Error.Text = Error.Text.Replace("{0}", exitCode.ToString());
                     Error.Visibility = Visibility.Visible;
                 }
                 else
