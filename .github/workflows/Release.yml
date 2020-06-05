@@ -117,4 +117,4 @@ jobs:
           pat: ${{ secrets.VS_PAT }}
           # (Required) Path to the manifest used for the publish
           manifestPath: extension.manifest.json
-          vsixPath: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}/
+          useLatestReleaseAsset: true
