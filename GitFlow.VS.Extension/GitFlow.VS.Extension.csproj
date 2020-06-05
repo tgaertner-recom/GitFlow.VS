@@ -437,6 +437,7 @@
   <ItemGroup>
     <Compile Include="GitFlowActionSection.cs" />
     <Compile Include="GitFlowBugfixesSection.cs" />
+    <Compile Include="GitFlowScriptInstallation.cs" />
     <Compile Include="GitFlowReleasesSection.cs" />
     <Compile Include="GitFlowFeaturesSection.cs" />
     <Compile Include="GitFlowInitSection.cs" />
