@@ -8,7 +8,7 @@ namespace GitFlowVS.Extension
 {
     public static class GitFlowScriptInstallation
     {
-        public static int Install()
+        public static int Install(Version currentVersion)
         {
             var installationPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string cmd = Path.Combine(installationPath, "Dependencies\\install.ps1");
@@ -33,6 +33,9 @@ namespace GitFlowVS.Extension
             };
             proc.Start();
             proc.WaitForExit();
+
+            if (!File.Exists(string.Format("GitFlowWithPr.{0}.{1}.{2}", currentVersion.Major, currentVersion.Minor, currentVersion.Revision)))
+                File.Create(string.Format("GitFlowWithPr.{0}.{1}.{2}", currentVersion.Major, currentVersion.Minor, currentVersion.Revision));
 
             return proc.ExitCode;
         }

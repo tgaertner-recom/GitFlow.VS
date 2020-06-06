@@ -8,6 +8,7 @@ using System.Windows.Threading;
 using GitFlow.VS;
 using GitFlowVS.Extension.UI;
 using Microsoft.TeamFoundation.Controls;
+using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
@@ -22,6 +23,7 @@ namespace GitFlowVS.Extension
         private static ITeamExplorer teamExplorer;
         private static IVsOutputWindowPane outputWindow;
         private GitFlowPageUI ui;
+        private static Version currentVersion;
 
         public static IGitRepositoryInfo ActiveRepo
         {
@@ -61,9 +63,14 @@ namespace GitFlowVS.Extension
             gitService = (IGitExt)serviceProvider.GetService(typeof(IGitExt));
             teamExplorer = (ITeamExplorer) serviceProvider.GetService(typeof (ITeamExplorer));
             gitService.PropertyChanged += OnGitServicePropertyChanged;
-            
+            // get ExtensionManager
+            IVsExtensionManager manager = serviceProvider.GetService(typeof(SVsExtensionManager)) as IVsExtensionManager;
+            // get your extension by Product Id
+            IInstalledExtension myExtension = manager.GetInstalledExtensions().FirstOrDefault();
+            // get current version
+            currentVersion = myExtension.Header.Version;
             var outWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
-            var customGuid = new Guid("2AAAB744-47C6-4208-A26C-35937E69BB50");
+            var customGuid = new Guid("4BEF3E2A-F42D-4BFB-A99B-7EACAC914C50");
             outWindow.CreatePane(ref customGuid, "GitFlow.VS", 1, 1);
             outWindow.GetPane(ref customGuid, out outputWindow);
 
@@ -85,6 +92,8 @@ namespace GitFlowVS.Extension
         {
             get
             {
+                if (!File.Exists(string.Format("GitFlowWithPr.{0}.{1}.{2}", currentVersion.Major, currentVersion.Minor, currentVersion.Revision)))
+                    return false;
                 //Read PATH to find git installation path
                 //Check if extension has been configured
                 string binariesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Dependencies\\binaries");

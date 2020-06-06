@@ -1,6 +1,10 @@
 using System;
+using System.ComponentModel.Composition;
+using System.Linq;
 using GitFlowVS.Extension.UI;
 using Microsoft.TeamFoundation.Controls;
+using Microsoft.VisualStudio.ExtensionManager;
+using Microsoft.VisualStudio.Shell;
 using TeamExplorer.Common;
 
 namespace GitFlowVS.Extension
@@ -8,12 +12,18 @@ namespace GitFlowVS.Extension
     [TeamExplorerSection(GuidList.GitFlowInstallSection, GuidList.GitFlowPage, 100)]
     public class GitFlowInstallSection : TeamExplorerBaseSection, IGitFlowSection
     {
-        public GitFlowInstallSection()
+        [ImportingConstructor]
+        public GitFlowInstallSection([Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
             try
             {
                 Title = "GitFlow with PR";
-                SectionContent = new InstallGitFlowUI(this);
+                IVsExtensionManager manager = serviceProvider.GetService(typeof(SVsExtensionManager)) as IVsExtensionManager;
+                // get your extension by Product Id
+                IInstalledExtension myExtension = manager.GetInstalledExtensions().FirstOrDefault();
+                // get current version
+                var currentVersion = myExtension.Header.Version;
+                SectionContent = new InstallGitFlowUI(this, currentVersion);
 
                 UpdateVisibleState();
 
