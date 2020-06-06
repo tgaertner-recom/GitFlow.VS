@@ -7,7 +7,7 @@
   "overview": "README.md",
   "priceCategory": "free",
   "publisher": "GitFlow",
-  "private": true,
+  "private": false,
   "qna": true,
   "repo": "https://github.com/proge-software/GitFlow.VS"
 }
