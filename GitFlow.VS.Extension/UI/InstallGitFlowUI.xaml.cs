@@ -12,13 +12,11 @@ namespace GitFlowVS.Extension.UI
     public partial class InstallGitFlowUI : UserControl
     {
         private readonly GitFlowInstallSection parent;
-        private readonly Version currentVersion;
 
-        public InstallGitFlowUI(GitFlowInstallSection parent, Version currentVersion)
+        public InstallGitFlowUI(GitFlowInstallSection parent)
         {
-			Logger.PageView("InstallGitFlow");
+            Logger.PageView("InstallGitFlow");
             this.parent = parent;
-            this.currentVersion = currentVersion;
             InitializeComponent();
 
             if (GitHelper.GetGitInstallationPath() == null)
@@ -28,7 +26,7 @@ namespace GitFlowVS.Extension.UI
                 GitFlowInstallationButton.Visibility = Visibility.Collapsed;
                 GitNoRepo.Visibility = Visibility.Collapsed;
             }
-            else if(GitFlowPage.ActiveRepo == null)
+            else if (GitFlowPage.ActiveRepo == null)
             {
                 GitNoRepo.Visibility = Visibility.Visible;
                 GitInstallation.Visibility = Visibility.Collapsed;
@@ -41,9 +39,9 @@ namespace GitFlowVS.Extension.UI
         {
             try
             {
-	            Logger.Event("Install");
+                Logger.Event("Install");
                 Error.Visibility = Visibility.Hidden;
-                var exitCode = GitFlowScriptInstallation.Install(this.currentVersion);
+                var exitCode = GitFlowScriptInstallation.Install();
 
                 if (exitCode != 0)
                 {
@@ -58,7 +56,7 @@ namespace GitFlowVS.Extension.UI
             catch (Exception ex)
             {
                 parent.ShowNotification(ex.ToString(), NotificationType.Error);
-				Logger.Exception(ex);
+                Logger.Exception(ex);
             }
         }
     }
