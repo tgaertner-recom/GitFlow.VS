@@ -164,6 +164,9 @@
     <Reference Include="Microsoft.VisualStudio.CoreUtility, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.VisualStudio.CoreUtility.16.4.280\lib\net472\Microsoft.VisualStudio.CoreUtility.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.ExtensionManager, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\VSSDK.ExtensionManager.11.0.0\lib\net45\Microsoft.VisualStudio.ExtensionManager.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.ImageCatalog, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.VisualStudio.ImageCatalog.16.5.29903.111\lib\net45\Microsoft.VisualStudio.ImageCatalog.dll</HintPath>
     </Reference>

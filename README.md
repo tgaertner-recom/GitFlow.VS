@@ -1,4 +1,4 @@
-# GitFlow for Visual Studio 2019
+# GitFlow with PR for Visual Studio 2019
 
 Forked from https://github.com/jakobehn/GitFlow.VS
 
@@ -10,7 +10,7 @@ It exposes the most common GitFlow options when finishing branches, such as opti
 
 
 ### Prerequirements
-The extension requires Visual Studio 2019 (it's also available for VS2017 and VS2015). It will install GitFlow and azure-cli for you. Since GitFlow with PR depends on Git for Windows, this must be installed before using the extension 
+The extension requires Visual Studio 2019. It will install GitFlow and azure-cli for you. Since GitFlow with PR depends on Git for Windows, this must be installed before using the extension 
  
 
 ## Screenshots
