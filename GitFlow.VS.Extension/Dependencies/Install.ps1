@@ -27,13 +27,6 @@ Write-Host "Copy binaries to Git installation directory " + $gitLocation
 
 Copy-Item -Path "$binaries\*.*" -Destination "$gitLocation" -Force
 
-#Check if gitflow need to be installed
-#if(Test-Path (Join-Path $gitLocation "git-flow"))
-#{
-#    Write-Host "GitFlow already installed"
-#    exit
-#}
-
 #Run gitflow install script
 $installScript = Join-Path $installationPath "gitflow\contrib\msysgit-install.cmd"
 $pinfo = New-Object System.Diagnostics.ProcessStartInfo
@@ -45,7 +38,6 @@ $p = New-Object System.Diagnostics.Process
 $p.StartInfo = $pinfo
 $p.Start() | Out-Null
 $p.WaitForExit() 
-Read-Host -Prompt "Press Enter to continue Installation done!"
 Write-Host "Installation done!"
 
 

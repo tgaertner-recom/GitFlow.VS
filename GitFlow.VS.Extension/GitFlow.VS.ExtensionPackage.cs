@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using TeamExplorer.Common;
@@ -18,10 +19,11 @@ namespace GitFlowVS.Extension
         {
         }
 
-        protected override System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             UserSettings.ServiceProvider = this;
-            return System.Threading.Tasks.Task.FromResult<object>(null);
+            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+            await base.InitializeAsync(cancellationToken, progress);
         }
 
     }

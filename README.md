@@ -7,10 +7,7 @@ This Team Explorer extension integrates GitFlow with PullRequest into your devel
 
 It exposes the most common GitFlow options when finishing branches, such as options to delete branches, rebase on development branch and tagging of release branches.
 
-Read more about this extension here:
-http://blog.ehn.nu/2015/02/introducing-gitflow-for-visual-studio/
 
- 
 
 ### Prerequirements
 The extension requires Visual Studio 2019 (it's also available for VS2017 and VS2015). It will install GitFlow and azure-cli for you. Since GitFlow with PR depends on Git for Windows, this must be installed before using the extension 
