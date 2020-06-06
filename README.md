@@ -1,7 +1,9 @@
 # GitFlow for Visual Studio 2019
 
+Forked from https://github.com/jakobehn/GitFlow.VS
+
 ### Features 
-This Team Explorer extension integrates GitFlow into your development workflow. It lets you easily create and finish feature, release and hotfix branches right from Team Explorer. 
+This Team Explorer extension integrates GitFlow with PullRequest into your development workflow. It lets you easily create and finish feature, release and hotfix branches right from Team Explorer. 
 
 It exposes the most common GitFlow options when finishing branches, such as options to delete branches, rebase on development branch and tagging of release branches.
 
