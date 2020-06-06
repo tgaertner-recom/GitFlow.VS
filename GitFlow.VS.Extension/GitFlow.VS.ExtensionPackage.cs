@@ -1,11 +1,10 @@
-﻿using System.Runtime.InteropServices;
+﻿using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Shell;
-using TeamExplorer.Common;
 using System;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
-using EnvDTE80;
-using EnvDTE;
+using TeamExplorer.Common;
 
 namespace GitFlowVS.Extension
 {
@@ -15,29 +14,17 @@ namespace GitFlowVS.Extension
     [Guid(GuidList.GuidGitFlowVsExtensionPkgString)]
     public sealed class GitFlowVSExtension : AsyncPackage
     {
-        private DTEEvents _dteEvents;
 
         public GitFlowVSExtension()
         {
         }
 
-        protected override System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             UserSettings.ServiceProvider = this;
-            base.Initialize();
-
-            var dte = (DTE2)GetService(typeof(SDTE));
-            _dteEvents = dte.Events.DTEEvents;
-            _dteEvents.OnStartupComplete += OnStartupComplete;
-            return System.Threading.Tasks.Task.FromResult<object>(null);
+            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+            await base.InitializeAsync(cancellationToken, progress);
         }
 
-
-        private void OnStartupComplete()
-        {
-            _dteEvents.OnStartupComplete -= OnStartupComplete;
-            _dteEvents = null;
-            GitFlowScriptInstallation.Install();
-        }
     }
 }
