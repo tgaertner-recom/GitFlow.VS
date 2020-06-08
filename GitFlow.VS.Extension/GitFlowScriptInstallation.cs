@@ -33,6 +33,8 @@ namespace GitFlowVS.Extension
             };
             proc.Start();
             proc.WaitForExit();
+            
+            GitFlowVersion.InstallFileVersion();
 
             return proc.ExitCode;
         }

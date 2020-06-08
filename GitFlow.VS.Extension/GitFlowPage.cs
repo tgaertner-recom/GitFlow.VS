@@ -85,6 +85,9 @@ namespace GitFlowVS.Extension
         {
             get
             {
+
+                if (GitFlowVersion.IsFirstInstallation())
+                    return false;
                 //Read PATH to find git installation path
                 //Check if extension has been configured
                 string binariesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Dependencies\\binaries");
