@@ -65,7 +65,7 @@ jobs:
         uses: warrenbuckley/Setup-MSBuild@v1
       
       - name: Build with MSBuild
-        run: msbuild $env:Solution_Path /property:Configuration=$env:BuildConfiguration
+        run: msbuild $env:Solution_Path /property:Configuration=$env:BuildConfiguration /property:Version=$steps.gitversion.outputs.majorMinorPatch /property:AssemblyVersion=$steps.gitversion.outputs.majorMinorPatch
 
       - name: upload vsix as artifact
         uses: actions/upload-artifact@v2

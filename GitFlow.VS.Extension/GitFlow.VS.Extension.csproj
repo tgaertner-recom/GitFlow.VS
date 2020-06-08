@@ -447,6 +447,7 @@
     <Compile Include="GitFlowInstallSection.cs" />
     <Compile Include="GitFlowNavigationItem.cs" />
     <Compile Include="GitFlowPage.cs" />
+    <Compile Include="GitFlowVersion.cs" />
     <Compile Include="IGitFlowSection.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="UI\Commands.cs" />
