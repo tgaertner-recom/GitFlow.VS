@@ -100,7 +100,7 @@
     <Compile Include="GitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GitFlow.VS\GitFlowWithPR.VS.csproj">
+    <ProjectReference Include="..\GitFlowWithPR.VS\GitFlowWithPR.VS.csproj">
       <Project>{109c6173-0dbf-43d7-9eee-aa404561b4f0}</Project>
       <Name>GitFlowWithPR.VS</Name>
     </ProjectReference>
