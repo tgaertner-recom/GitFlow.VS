@@ -730,7 +730,7 @@
     <Content Include="Resources\Package.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GitFlow.VS\GitFlowWithPR.VS.csproj">
+    <ProjectReference Include="..\GitFlowWithPR.VS\GitFlowWithPR.VS.csproj">
       <Project>{109C6173-0DBF-43D7-9EEE-AA404561B4F0}</Project>
       <Name>GitFlowWithPR.VS</Name>
     </ProjectReference>
