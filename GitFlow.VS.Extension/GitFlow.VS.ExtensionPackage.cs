@@ -10,7 +10,7 @@ namespace GitFlowWithPRVS.Extension
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [ProvideAutoLoad(UIContextGuids80.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]
-    [Guid(GuidList.GuidGitFlowVsExtensionPkgString)]
+    [Guid(GuidList.GuidGitFlowWithPRVsExtensionPkgString)]
     public sealed class GitFlowWithPRVSExtension : AsyncPackage
     {
 
