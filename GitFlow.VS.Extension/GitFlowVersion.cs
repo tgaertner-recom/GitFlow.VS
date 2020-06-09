@@ -6,29 +6,24 @@ namespace GitFlowWithPRVS.Extension
     public static class GitFlowVersion
     {
 
-        private static string GetVersion()
-        {
-            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        }
+        private static string GetVersion => Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        
 
-        private static string GetFileInstallation()
-        {
-            return Path.Combine(Assembly.GetExecutingAssembly().Location, GetVersion());
-        }
+        private static string GetFileInstallation =>  Path.Combine(Assembly.GetExecutingAssembly().Location, GetVersion);
 
         public static bool IsFirstInstallation()
         {
-            var path = GetFileInstallation();
+            var path = GetFileInstallation;
 
-            if (File.Exists(path))
-                return false;
-            return true;
+            if (!File.Exists(path))
+                return true;
+            return false;
         }
 
 
         public static void InstallFileVersion()
         {
-            var path = GetFileInstallation();
+            var path = GetFileInstallation;
 
             File.Create(path);
         }
