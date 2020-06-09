@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using GitFlowVS.Extension.ViewModels;
+using GitFlowWithPRVS.Extension.ViewModels;
 
-namespace GitFlowVS.Extension.UI
+namespace GitFlowWithPRVS.Extension.UI
 {
     public partial class InitUi : UserControl
     {

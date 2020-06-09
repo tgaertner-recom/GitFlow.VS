@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using TeamExplorer.Common;
 
-namespace GitFlowVS.Extension
+namespace GitFlowWithPRVS.Extension
 {
     [TeamExplorerNavigationItem("59168500-14BC-4EE9-BB1F-7B2B970A4AF6",1500, TargetPageId = "1F9974CD-16C3-4AEF-AED2-0CE37988E2F1")]
     public class GitFlowNavigationItem : TeamExplorerBaseNavigationItem
@@ -22,7 +22,7 @@ namespace GitFlowVS.Extension
             try
             {
                 UpdateVisible();
-                Text = "GitFlow with PR";
+                Text = "GitFlowWithPR with PR";
                 Image = Resources.LinkIcon;
                 IsVisible = true;
                 teamExplorer = GetService<ITeamExplorer>();

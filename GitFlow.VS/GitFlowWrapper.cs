@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using LibGit2Sharp;
 
-namespace GitFlow.VS
+namespace GitFlowWithPR.VS
 {
     public class GitFlowWrapper
     {

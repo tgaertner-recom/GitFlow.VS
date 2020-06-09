@@ -1,4 +1,4 @@
-namespace GitFlowVS.Extension
+namespace GitFlowWithPRVS.Extension
 {
     public interface IGitFlowSection
     {

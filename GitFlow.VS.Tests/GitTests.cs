@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Win32;
 
-namespace GitFlow.VS.Tests
+namespace GitFlowWithPR.VS.Tests
 {
     [TestClass]
     public class GitTests

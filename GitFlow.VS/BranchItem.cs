@@ -1,7 +1,7 @@
 using System;
 using System.Windows;
 
-namespace GitFlow.VS
+namespace GitFlowWithPR.VS
 {
     public class BranchItem
     {

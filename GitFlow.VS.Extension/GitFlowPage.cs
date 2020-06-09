@@ -1,19 +1,19 @@
-﻿using System;
+﻿using GitFlowWithPR.VS;
+using GitFlowWithPRVS.Extension.UI;
+using Microsoft.TeamFoundation.Controls;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Threading;
-using GitFlow.VS;
-using GitFlowVS.Extension.UI;
-using Microsoft.TeamFoundation.Controls;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.TeamFoundation.Git.Extensibility;
 using TeamExplorer.Common;
 
-namespace GitFlowVS.Extension
+namespace GitFlowWithPRVS.Extension
 {
     [TeamExplorerPage(GuidList.GitFlowPage, Undockable = true)]
     public class GitFlowPage : TeamExplorerBasePage
@@ -57,14 +57,14 @@ namespace GitFlowVS.Extension
         [ImportingConstructor]
         public GitFlowPage([Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
-            Title = "GitFlow with PR";
+            Title = "GitFlowWithPR with PR";
             gitService = (IGitExt)serviceProvider.GetService(typeof(IGitExt));
             teamExplorer = (ITeamExplorer)serviceProvider.GetService(typeof(ITeamExplorer));
             gitService.PropertyChanged += OnGitServicePropertyChanged;
 
             var outWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
             var customGuid = new Guid("2AAAB744-47C6-4208-A26C-35937E69BB50");
-            outWindow.CreatePane(ref customGuid, "GitFlow.VS", 1, 1);
+            outWindow.CreatePane(ref customGuid, "GitFlowWithPR.VS", 1, 1);
             outWindow.GetPane(ref customGuid, out outputWindow);
 
             ui = new GitFlowPageUI();

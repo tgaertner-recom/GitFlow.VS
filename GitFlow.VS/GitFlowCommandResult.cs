@@ -1,4 +1,4 @@
-﻿namespace GitFlow.VS
+﻿namespace GitFlowWithPR.VS
 {
     public class GitFlowCommandResult
     {

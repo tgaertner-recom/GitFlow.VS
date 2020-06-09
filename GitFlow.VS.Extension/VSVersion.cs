@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace GitFlowVS.Extension
+namespace GitFlowWithPRVS.Extension
 {
 	public static class VSVersion
 	{

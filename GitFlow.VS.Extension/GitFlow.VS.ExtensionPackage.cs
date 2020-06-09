@@ -1,29 +1,27 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using TeamExplorer.Common;
 
-namespace GitFlowVS.Extension
+namespace GitFlowWithPRVS.Extension
 {
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [ProvideAutoLoad(UIContextGuids80.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]
     [Guid(GuidList.GuidGitFlowVsExtensionPkgString)]
-    public sealed class GitFlowVSExtension : AsyncPackage
+    public sealed class GitFlowWithPRVSExtension : AsyncPackage
     {
 
-        public GitFlowVSExtension()
+        public GitFlowWithPRVSExtension()
         {
         }
 
-        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+        protected override System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             UserSettings.ServiceProvider = this;
-            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-            await base.InitializeAsync(cancellationToken, progress);
+            return System.Threading.Tasks.Task.FromResult<object>(null);
         }
 
     }

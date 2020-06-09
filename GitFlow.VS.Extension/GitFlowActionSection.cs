@@ -1,9 +1,9 @@
-using GitFlowVS.Extension.UI;
-using GitFlowVS.Extension.ViewModels;
+using GitFlowWithPRVS.Extension.UI;
+using GitFlowWithPRVS.Extension.ViewModels;
 using Microsoft.TeamFoundation.Controls;
 using TeamExplorer.Common;
 
-namespace GitFlowVS.Extension
+namespace GitFlowWithPRVS.Extension
 {
     [TeamExplorerSection(GuidList.GitFlowActionSection, GuidList.GitFlowPage, 110)]
     public class GitFlowActionSection : TeamExplorerBaseSection, IGitFlowSection

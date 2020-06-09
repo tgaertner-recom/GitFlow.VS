@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using GitFlowVS.Extension.ViewModels;
+using GitFlowWithPRVS.Extension.ViewModels;
 
-namespace GitFlowVS.Extension.UI
+namespace GitFlowWithPRVS.Extension.UI
 {
     /// <summary>
     /// Interaction logic for FeaturesUI.xaml
