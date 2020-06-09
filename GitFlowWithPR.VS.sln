@@ -10,11 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7A31A0
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitFlowWithPR.VS", "GitFlow.VS\GitFlowWithPR.VS.csproj", "{109C6173-0DBF-43D7-9EEE-AA404561B4F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitFlowWithPR.VS", "GitFlowWithPR.VS\GitFlowWithPR.VS.csproj", "{109C6173-0DBF-43D7-9EEE-AA404561B4F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitFlowWithPR.VS.Tests", "GitFlow.VS.Tests\GitFlowWithPR.VS.Tests.csproj", "{AED3FCED-BD51-4B0D-821F-5502C350F27E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitFlowWithPR.VS.Tests", "GitFlowWithPR.VS.Tests\GitFlowWithPR.VS.Tests.csproj", "{AED3FCED-BD51-4B0D-821F-5502C350F27E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitFlowWithPR.VS.Extension", "GitFlow.VS.Extension\GitFlowWithPR.VS.Extension.csproj", "{B5F05374-4507-4ACE-A4F5-7AF90ABE9ED4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitFlowWithPR.VS.Extension", "GitFlowWithPR.VS.Extension\GitFlowWithPR.VS.Extension.csproj", "{B5F05374-4507-4ACE-A4F5-7AF90ABE9ED4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamExplorer.Common", "TeamExplorer.Common\TeamExplorer.Common.csproj", "{388AC013-C628-4A32-ABBC-A28A68C3A112}"
 EndProject
