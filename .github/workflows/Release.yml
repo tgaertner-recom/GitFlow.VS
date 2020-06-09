@@ -14,9 +14,9 @@ jobs:
     runs-on: windows-latest
 
     env:
-        Solution_Path: GitFlow.VS.sln
-        Test_Project_Path: GitFlow.VS.Tests
-        Extension_Project_Path: GitFlow.VS.Extension
+        Solution_Path: GitFlowWithPR.VS.sln
+        Test_Project_Path: GitFlowWithPR.VS.Tests
+        Extension_Project_Path: GitFlowWithPR.VS.Extension
         BuildConfiguration: 'VS2019'
     
     steps: 
