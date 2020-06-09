@@ -1,6 +1,6 @@
 using System;
 
-namespace GitFlowVS.Extension.ViewModels
+namespace GitFlowWithPRVS.Extension.ViewModels
 {
 
     public class ListItem

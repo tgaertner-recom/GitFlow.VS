@@ -1,9 +1,9 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using GitFlowVS.Extension.Annotations;
+using GitFlowWithPRVS.Extension.Annotations;
 
-namespace GitFlowVS.Extension.ViewModels
+namespace GitFlowWithPRVS.Extension.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

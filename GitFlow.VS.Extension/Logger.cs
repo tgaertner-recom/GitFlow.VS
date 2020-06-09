@@ -6,7 +6,7 @@ using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.Extensibility;
 using TeamExplorer.Common;
 
-namespace GitFlowVS.Extension
+namespace GitFlowWithPRVS.Extension
 {
 	public static class Logger
 	{

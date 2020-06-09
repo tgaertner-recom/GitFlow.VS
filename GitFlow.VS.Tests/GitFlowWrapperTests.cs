@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using LibGit2Sharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace GitFlow.VS.Tests
+namespace GitFlowWithPR.VS.Tests
 {
     [TestClass]
     public class GitFlowWrapperTests

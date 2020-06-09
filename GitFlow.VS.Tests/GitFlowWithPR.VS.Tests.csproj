@@ -7,8 +7,8 @@
     <ProjectGuid>{AED3FCED-BD51-4B0D-821F-5502C350F27E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GitFlow.VS.Tests</RootNamespace>
-    <AssemblyName>GitFlow.VS.Tests</AssemblyName>
+    <RootNamespace>GitFlowWithPR.VS.Tests</RootNamespace>
+    <AssemblyName>GitFlowWithPR.VS.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -100,9 +100,9 @@
     <Compile Include="GitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GitFlow.VS\GitFlow.VS.csproj">
+    <ProjectReference Include="..\GitFlow.VS\GitFlowWithPR.VS.csproj">
       <Project>{109c6173-0dbf-43d7-9eee-aa404561b4f0}</Project>
-      <Name>GitFlow.VS</Name>
+      <Name>GitFlowWithPR.VS</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

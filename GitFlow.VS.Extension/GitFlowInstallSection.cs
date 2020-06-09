@@ -1,9 +1,9 @@
 using System;
-using GitFlowVS.Extension.UI;
+using GitFlowWithPRVS.Extension.UI;
 using Microsoft.TeamFoundation.Controls;
 using TeamExplorer.Common;
 
-namespace GitFlowVS.Extension
+namespace GitFlowWithPRVS.Extension
 {
     [TeamExplorerSection(GuidList.GitFlowInstallSection, GuidList.GitFlowPage, 100)]
     public class GitFlowInstallSection : TeamExplorerBaseSection, IGitFlowSection
@@ -12,7 +12,7 @@ namespace GitFlowVS.Extension
         {
             try
             {
-                Title = "GitFlow with PR";
+                Title = "GitFlowWithPR with PR";
                 SectionContent = new InstallGitFlowUI(this);
 
                 UpdateVisibleState();

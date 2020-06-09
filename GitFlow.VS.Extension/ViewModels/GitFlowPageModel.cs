@@ -2,10 +2,10 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using GitFlowVS.Extension.Annotations;
+using GitFlowWithPRVS.Extension.Annotations;
 using Microsoft.TeamFoundation.Controls;
 
-namespace GitFlowVS.Extension.ViewModels
+namespace GitFlowWithPRVS.Extension.ViewModels
 {
     public class GitFlowPageModel : INotifyPropertyChanged
     {

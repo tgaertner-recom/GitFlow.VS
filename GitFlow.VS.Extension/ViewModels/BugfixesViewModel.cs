@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using GitFlow.VS;
+using GitFlowWithPR.VS;
 using System;
 
-namespace GitFlowVS.Extension.ViewModels
+namespace GitFlowWithPRVS.Extension.ViewModels
 {
     public class BugfixesViewModel : ViewModelBase
     {

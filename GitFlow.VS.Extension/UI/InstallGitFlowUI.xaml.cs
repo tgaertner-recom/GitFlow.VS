@@ -1,10 +1,10 @@
-﻿using GitFlow.VS;
+﻿using GitFlowWithPR.VS;
 using Microsoft.TeamFoundation.Controls;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace GitFlowVS.Extension.UI
+namespace GitFlowWithPRVS.Extension.UI
 {
     /// <summary>
     /// Interaction logic for InstallGitFlowUI.xaml

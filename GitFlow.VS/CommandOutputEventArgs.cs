@@ -1,6 +1,6 @@
 using System;
 
-namespace GitFlow.VS
+namespace GitFlowWithPR.VS
 {
     public class CommandOutputEventArgs : EventArgs
     {

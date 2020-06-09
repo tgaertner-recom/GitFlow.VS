@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Reflection;
 
-namespace GitFlowVS.Extension
+namespace GitFlowWithPRVS.Extension
 {
     public static class GitFlowVersion
     {

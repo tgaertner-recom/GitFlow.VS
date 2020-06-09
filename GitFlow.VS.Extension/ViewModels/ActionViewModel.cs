@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using GitFlow.VS;
+using GitFlowWithPR.VS;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 
-namespace GitFlowVS.Extension.ViewModels
+namespace GitFlowWithPRVS.Extension.ViewModels
 {
     public class ActionViewModel : ViewModelBase
     {

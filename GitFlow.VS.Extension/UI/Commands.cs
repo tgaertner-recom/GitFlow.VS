@@ -2,7 +2,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace GitFlowVS.Extension.UI
+namespace GitFlowWithPRVS.Extension.UI
 {
     public static class Commands
     {

@@ -1,7 +1,7 @@
-﻿using GitFlow.VS;
+﻿using GitFlowWithPR.VS;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace GitFlowVS.Extension
+namespace GitFlowWithPRVS.Extension
 {
     public class VsGitFlowWrapper : GitFlowWrapper
     {
