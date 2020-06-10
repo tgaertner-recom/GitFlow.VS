@@ -9,19 +9,16 @@ namespace GitFlowWithPRVS.Extension
 {
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
-    [ProvideAutoLoad(UIContextGuids80.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(UIContextGuids.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]
     [Guid(GuidList.GuidGitFlowWithPRVsExtensionPkgString)]
     public sealed class GitFlowWithPRVSExtension : AsyncPackage
     {
 
-        public GitFlowWithPRVSExtension()
-        {
-        }
-
-        protected override System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             UserSettings.ServiceProvider = this;
-            return System.Threading.Tasks.Task.FromResult<object>(null);
+
+            await base.InitializeAsync(cancellationToken, progress);
         }
 
     }

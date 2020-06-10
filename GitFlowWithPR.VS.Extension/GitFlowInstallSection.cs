@@ -12,7 +12,7 @@ namespace GitFlowWithPRVS.Extension
         {
             try
             {
-                Title = "GitFlowWithPR with PR";
+                Title = "GitFlow with Pull Request";
                 SectionContent = new InstallGitFlowUI(this);
 
                 UpdateVisibleState();
