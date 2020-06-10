@@ -57,7 +57,7 @@ namespace GitFlowWithPRVS.Extension
         [ImportingConstructor]
         public GitFlowPage([Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
-            Title = "GitFlowWithPR with PR";
+            Title = "GitFlow with Pull Request";
             gitService = (IGitExt)serviceProvider.GetService(typeof(IGitExt));
             teamExplorer = (ITeamExplorer)serviceProvider.GetService(typeof(ITeamExplorer));
             gitService.PropertyChanged += OnGitServicePropertyChanged;

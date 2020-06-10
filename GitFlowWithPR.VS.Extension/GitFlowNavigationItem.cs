@@ -9,7 +9,7 @@ using TeamExplorer.Common;
 
 namespace GitFlowWithPRVS.Extension
 {
-    [TeamExplorerNavigationItem("59168500-14BC-4EE9-BB1F-7B2B970A4AF6",1500, TargetPageId = "1F9974CD-16C3-4AEF-AED2-0CE37988E2F1")]
+    [TeamExplorerNavigationItem("59168500-14BC-4EE9-BB1F-7B2B970A4AF6",1500, TargetPageId = "75EC888F-7549-4D9C-9967-4869A9AEDDDD")]
     public class GitFlowNavigationItem : TeamExplorerBaseNavigationItem
     {
         private readonly ITeamExplorer teamExplorer;
@@ -22,7 +22,7 @@ namespace GitFlowWithPRVS.Extension
             try
             {
                 UpdateVisible();
-                Text = "GitFlowWithPR with PR";
+                Text = "GitFlow with Pull Request";
                 Image = Resources.LinkIcon;
                 IsVisible = true;
                 teamExplorer = GetService<ITeamExplorer>();
