@@ -489,7 +489,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="VsGitFlowWrapper.cs" />
-    <Compile Include="Vsix.cs" />
     <Compile Include="VSVersion.cs" />
   </ItemGroup>
   <ItemGroup>
