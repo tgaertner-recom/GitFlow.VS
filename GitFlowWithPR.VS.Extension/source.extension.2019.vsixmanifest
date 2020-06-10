@@ -9,6 +9,7 @@
         <Icon>icon.png</Icon>
         <PreviewImage>icon.png</PreviewImage>
         <Tags>VisualStudio Git GitFlow PullRequest TeamExplorer</Tags>
+        <Preview>true</Preview>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0,17.0)" />
