@@ -6,7 +6,7 @@ namespace TeamExplorer.Common
 {
     public static class UserSettings
     {
-        private const string CollectionPath = "GitFlowVSWithPR";
+        private const string CollectionPath = "GitFlowWithPRVS";
         public static IServiceProvider ServiceProvider { get; set; }
 
 

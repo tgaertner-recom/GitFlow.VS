@@ -11,10 +11,10 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>14.0</OldToolsVersion>
-    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2013'">GitFlowVS.2013.vsix</TargetVsixContainerName>
-    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2015'">GitFlowVS.2015.vsix</TargetVsixContainerName>
-    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2017'">GitFlowVS.2017.vsix</TargetVsixContainerName>
-    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2019'">GitFlowVS.2019.vsix</TargetVsixContainerName>
+    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2013'">GitFlowWithPRVS.2013.vsix</TargetVsixContainerName>
+    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2015'">GitFlowWithPRVS.2015.vsix</TargetVsixContainerName>
+    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2017'">GitFlowWithPRVS.2017.vsix</TargetVsixContainerName>
+    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2019'">GitFlowWithPRVS.2019.vsix</TargetVsixContainerName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <PublishUrl>publish\</PublishUrl>
@@ -70,7 +70,6 @@
     <RootNamespace>GitFlowWithPRVS.Extension</RootNamespace>
     <AssemblyName>GitFlowWithPRVS.Extension</AssemblyName>
     <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -711,9 +710,6 @@
     <None Include="source.extension.2015.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Key.snk" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.png">

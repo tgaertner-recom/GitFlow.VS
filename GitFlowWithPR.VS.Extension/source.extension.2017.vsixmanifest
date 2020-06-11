@@ -22,7 +22,7 @@
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
     </Prerequisites>
     <Assets>
-        <Asset Type="Microsoft.VisualStudio.VsPackage" Path="GitFlowVS.Extension.pkgdef" />
-        <Asset Type="Microsoft.VisualStudio.MefComponent" Path="GitFlowVS.Extension.dll" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" Path="GitFlowWithPRVS.Extension.pkgdef" />
+        <Asset Type="Microsoft.VisualStudio.MefComponent" Path="GitFlowWithPRVS.Extension.dll" />
     </Assets>
 </PackageManifest>

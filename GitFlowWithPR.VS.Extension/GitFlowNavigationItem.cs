@@ -9,7 +9,7 @@ using TeamExplorer.Common;
 
 namespace GitFlowWithPRVS.Extension
 {
-    [TeamExplorerNavigationItem("80E09B6E-FD3E-4E9B-9894-A9DE8671F870", 1500, TargetPageId = "75EC888F-7549-4D9C-9967-4869A9AEDDDD")]
+    [TeamExplorerNavigationItem(GuidList.GitFlowNavigationItem, 1500, TargetPageId = GuidList.GitFlowPage)]
     public class GitFlowNavigationItem : TeamExplorerBaseNavigationItem
     {
         private readonly ITeamExplorer teamExplorer;
