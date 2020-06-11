@@ -13,12 +13,14 @@ namespace GitFlowWithPRVS.Extension
     [Guid(GuidList.GuidGitFlowWithPRVsExtensionPkgString)]
     public sealed class GitFlowWithPRVSExtension : AsyncPackage
     {
+        public GitFlowWithPRVSExtension()
+        {
+        }
 
-        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+        protected override System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             UserSettings.ServiceProvider = this;
-
-            await base.InitializeAsync(cancellationToken, progress);
+            return System.Threading.Tasks.Task.FromResult<object>(null);
         }
 
     }

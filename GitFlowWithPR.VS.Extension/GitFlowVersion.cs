@@ -6,7 +6,7 @@ namespace GitFlowWithPRVS.Extension
     public static class GitFlowVersion
     {
 
-        private static string GetVersion => Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        private static string GetVersion => VSVersion.FullVersion.ToString();
         
 
         private static string GetFileInstallation =>  Path.Combine(Assembly.GetExecutingAssembly().Location, GetVersion);

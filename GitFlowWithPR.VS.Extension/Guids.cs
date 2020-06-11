@@ -4,11 +4,8 @@ namespace GitFlowWithPRVS.Extension
 {
     static class GuidList
     {
-        public const string GuidGitFlowWithPRVsExtensionPkgString = "632375AC-F19B-4F7F-87C8-932B37D45CF2";
-        public const string GuidGitFlowWithPRVsExtensionCmdSetString = "B9275284-B14F-44AC-93D9-59D19B25A7F9";
-
-        public static readonly Guid GuidGitFlowWithPRVsExtensionCmdSet = new Guid(GuidGitFlowWithPRVsExtensionCmdSetString);
-
+        public const string GuidGitFlowWithPRVsExtensionPkgString = "ee0e74b0-16d2-44aa-ad97-6c10f0bb2942";
+        
         public const string GitFlowPage = "75EC888F-7549-4D9C-9967-4869A9AEDDDD";
         public const string GitFlowActionSection = "6DACB452-3D08-492E-892B-E54E87456888";
         public const string GitFlowFeaturesSection = "91A711C0-CF48-4354-9005-266E0CF9A4EC";
