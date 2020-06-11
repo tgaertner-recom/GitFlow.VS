@@ -5,7 +5,9 @@ namespace GitFlowWithPRVS.Extension
     static class GuidList
     {
         public const string GuidGitFlowWithPRVsExtensionPkgString = "ee0e74b0-16d2-44aa-ad97-6c10f0bb2942";
-        
+
+        public const string GitFlowNavigationItem = "80E09B6E-FD3E-4E9B-9894-A9DE8671F870";
+
         public const string GitFlowPage = "75EC888F-7549-4D9C-9967-4869A9AEDDDD";
         public const string GitFlowActionSection = "6DACB452-3D08-492E-892B-E54E87456888";
         public const string GitFlowFeaturesSection = "91A711C0-CF48-4354-9005-266E0CF9A4EC";
