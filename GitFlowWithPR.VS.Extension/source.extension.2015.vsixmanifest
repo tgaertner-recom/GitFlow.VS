@@ -19,7 +19,7 @@
         <Dependency Id="Microsoft.VisualStudio.MPF.14.0" DisplayName="Visual Studio MPF 14.0" Version="[14.0,15.0)" />
     </Dependencies>
     <Assets>
-        <Asset Type="Microsoft.VisualStudio.VsPackage" Path="GitFlowVS.Extension.pkgdef" />
-        <Asset Type="Microsoft.VisualStudio.MefComponent" Path="GitFlowVS.Extension.dll" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" Path="GitFlowWithPRVS.Extension.pkgdef" />
+        <Asset Type="Microsoft.VisualStudio.MefComponent" Path="GitFlowWithPRVS.Extension.dll" />
     </Assets>
 </PackageManifest>

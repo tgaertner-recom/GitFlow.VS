@@ -2,7 +2,7 @@
     <Metadata>
         <Identity Id="01FA6F71-CE26-4EB2-818F-A5E153ACB8D2" Version="1.0.0" Language="en-US" Publisher="Fernando De Mennato (Proge-Software)" />
         <DisplayName>GitFlow with Pull Request</DisplayName>
-        <Description xml:space="preserve">Integrates GitFlow with Pull Request  in Visual Studio 2019</Description>
+        <Description xml:space="preserve">Integrates GitFlow with Pull Request in Visual Studio 2019</Description>
         <MoreInfo>https://github.com/proge-software/GitFlow.VS</MoreInfo>
         <License>License.rtf</License>
         <GettingStartedGuide>http://blog.ehn.nu/2015/02/introducing-gitflow-for-visual-studio</GettingStartedGuide>
@@ -22,7 +22,7 @@
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[16.0,)" DisplayName="Visual Studio core editor" />
     </Prerequisites>
     <Assets>
-        <Asset Type="Microsoft.VisualStudio.VsPackage" Path="GitFlowVS.Extension.pkgdef" />
-        <Asset Type="Microsoft.VisualStudio.MefComponent" Path="GitFlowVS.Extension.dll" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" Path="GitFlowWithPRVS.Extension.pkgdef" />
+        <Asset Type="Microsoft.VisualStudio.MefComponent" Path="GitFlowWithPRVS.Extension.dll" />
     </Assets>
 </PackageManifest>

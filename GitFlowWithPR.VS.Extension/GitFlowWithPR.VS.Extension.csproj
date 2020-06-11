@@ -11,10 +11,10 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>14.0</OldToolsVersion>
-    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2013'">GitFlowVS.2013.vsix</TargetVsixContainerName>
-    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2015'">GitFlowVS.2015.vsix</TargetVsixContainerName>
-    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2017'">GitFlowVS.2017.vsix</TargetVsixContainerName>
-    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2019'">GitFlowVS.2019.vsix</TargetVsixContainerName>
+    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2013'">GitFlowWithPRVS.2013.vsix</TargetVsixContainerName>
+    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2015'">GitFlowWithPRVS.2015.vsix</TargetVsixContainerName>
+    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2017'">GitFlowWithPRVS.2017.vsix</TargetVsixContainerName>
+    <TargetVsixContainerName Condition="'$(Configuration)'=='VS2019'">GitFlowWithPRVS.2019.vsix</TargetVsixContainerName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <PublishUrl>publish\</PublishUrl>
