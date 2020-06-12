@@ -8,7 +8,7 @@ namespace GitFlowWithPRVS.Extension
 
         private static string GetFileInstallation()
         {
-            return Path.Combine(Assembly.GetExecutingAssembly().Location, "IsFirstInstallation");
+            return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "IsFirstInstallation");
         }
 
         public static bool IsFirstInstallation()
