@@ -42,11 +42,12 @@ jobs:
           echo "Patch: ${{ steps.gitversion.outputs.patch }}"
           echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
           echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+          echo "AssemblySemVer : ${{ steps.gitversion.outputs.assemblySemVer }}"
 
       - name: Update manifest version
         run: |
           [xml]$manifest = get-content ".\$env:Extension_Project_Path\source.extension.2019.vsixmanifest"
-          $manifest.PackageManifest.Metadata.Identity.Version = "${{ steps.gitversion.outputs.majorMinorPatch }}"
+          $manifest.PackageManifest.Metadata.Identity.Version = "${{ steps.gitversion.outputs.assemblySemVer }}"
           $manifest.save(".\$env:Extension_Project_Path\source.extension.2019.vsixmanifest")
           
       - name: add version in CHANGELOG.md
@@ -54,7 +55,7 @@ jobs:
         with:
           files: '${{github.workspace}}/CHANGELOG.md'
         env:
-          VERSION: "${{ steps.gitversion.outputs.semVer }}"
+          VERSION: "${{ steps.gitversion.outputs.assemblySemVer }}"
           
       - name: Setup Nuget.exe
         uses: warrenbuckley/Setup-Nuget@v1
@@ -71,22 +72,22 @@ jobs:
       - name: upload vsix as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
+          name: GitFlow-With-PR-${{steps.gitversion.outputs.assemblySemVer}}
           path: ${{ env.Extension_Project_Path }}\bin\${{ env.BuildConfiguration }}\GitFlowWithPRVS.2019.vsix 
       - name: upload README as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
+          name: GitFlow-With-PR-${{steps.gitversion.outputs.assemblySemVer}}
           path: README.md     
       - name: upload manifest as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
+          name: GitFlow-With-PR-${{steps.gitversion.outputs.assemblySemVer}}
           path: extension.manifest.json   
       - name: upload images as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: GitFlow-With-PR-${{steps.gitversion.outputs.majorMinorPatch}}
+          name: GitFlow-With-PR-${{steps.gitversion.outputs.assemblySemVer}}
           path: Images\*.*   
 
       - name: create a release
@@ -95,8 +96,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: v${{ steps.gitversion.outputs.semVer }}
-          release_name: v${{ steps.gitversion.outputs.semVer }}
+          tag_name: v${{ steps.gitversion.outputs.assemblySemVer }}
+          release_name: v${{ steps.gitversion.outputs.assemblySemVer }}
 
       - name: Upload Release Asset
         id: upload-release-asset
@@ -106,7 +107,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ env.Extension_Project_Path }}\bin\${{ env.BuildConfiguration }}\GitFlowWithPRVS.2019.vsix
-          asset_name: GitFlow With PR ${{steps.gitversion.outputs.semVer}}.vsix
+          asset_name: GitFlow With PR ${{steps.gitversion.outputs.assemblySemVer}}.vsix
           asset_content_type: application/zip          
 
       - name: Publish release to marketplace

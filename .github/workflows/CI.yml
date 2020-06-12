@@ -41,11 +41,12 @@ jobs:
           echo "Patch: ${{ steps.gitversion.outputs.patch }}"
           echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
           echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+          echo "AssemblySemVer : ${{ steps.gitversion.outputs.assemblySemVer }}"
 
       - name: Update manifest version
         run: |
           [xml]$manifest = get-content ".\$env:Extension_Project_Path\source.extension.2019.vsixmanifest"
-          $manifest.PackageManifest.Metadata.Identity.Version = "${{ steps.gitversion.outputs.majorMinorPatch }}"
+          $manifest.PackageManifest.Metadata.Identity.Version = "${{ steps.gitversion.outputs.assemblySemVer }}"
           $manifest.save(".\$env:Extension_Project_Path\source.extension.2019.vsixmanifest")
           
       - name: add version in CHANGELOG.md
@@ -53,7 +54,7 @@ jobs:
         with:
           files: '${{github.workspace}}/CHANGELOG.md'
         env:
-          VERSION: "${{ steps.gitversion.outputs.semVer }}"
+          VERSION: "${{ steps.gitversion.outputs.assemblySemVer }}"
           
       - name: Setup Nuget.exe
         uses: warrenbuckley/Setup-Nuget@v1
@@ -70,6 +71,6 @@ jobs:
       - name: upload vsix as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: GitFlow With PR ${{steps.gitversion.outputs.semVer}}.vsix
+          name: GitFlow With PR ${{steps.gitversion.outputs.assemblySemVer}}.vsix
           path: ${{ env.Extension_Project_Path }}\bin\${{ env.BuildConfiguration }}\GitFlowWithPRVS.2019.vsix 
       
