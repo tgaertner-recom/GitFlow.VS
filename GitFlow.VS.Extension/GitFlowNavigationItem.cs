@@ -9,7 +9,7 @@ using TeamExplorer.Common;
 
 namespace GitFlowVS.Extension
 {
-    [TeamExplorerNavigationItem("59168500-14BC-4EE9-BB1F-7B2B970A4AF6",1500, TargetPageId = "1F9974CD-16C3-4AEF-AED2-0CE37988E2F1")]
+    [TeamExplorerNavigationItem(GuidList.GitFlowNavigationItem, 1500, TargetPageId = GuidList.GitFlowPage)]
     public class GitFlowNavigationItem : TeamExplorerBaseNavigationItem
     {
         private readonly ITeamExplorer teamExplorer;
@@ -31,17 +31,17 @@ namespace GitFlowVS.Extension
             }
             catch (Exception ex)
             {
-	            HandleException(ex);
+                HandleException(ex);
             }
         }
 
-	    private void HandleException(Exception ex)
-	    {
-		    Logger.Exception(ex);
-		    ShowNotification(ex.Message, NotificationType.Error);
-	    }
+        private void HandleException(Exception ex)
+        {
+            Logger.Exception(ex);
+            ShowNotification(ex.Message, NotificationType.Error);
+        }
 
-	    protected override void ContextChanged(object sender, ContextChangedEventArgs e)
+        protected override void ContextChanged(object sender, ContextChangedEventArgs e)
         {
             UpdateVisible();
             base.ContextChanged(sender, e);
@@ -63,15 +63,15 @@ namespace GitFlowVS.Extension
 
         public override void Execute()
         {
-	        try
-	        {
-				Logger.PageView("Navigate");
-	        }
-	        catch (Exception ex)
-	        {
-		       Logger.Exception(ex);
-		       ShowNotification(ex.Message, NotificationType.Error);
-	        }
+            try
+            {
+                Logger.PageView("Navigate");
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex);
+                ShowNotification(ex.Message, NotificationType.Error);
+            }
             teamExplorer.NavigateToPage(new Guid(GuidList.GitFlowPage), null);
         }
     }
