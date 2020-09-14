@@ -22,7 +22,7 @@ namespace GitFlowVS.Extension
             try
             {
                 UpdateVisible();
-                Text = "GitFlow with PR";
+                Text = "GitFlow";
                 Image = Resources.LinkIcon;
                 IsVisible = true;
                 teamExplorer = GetService<ITeamExplorer>();
