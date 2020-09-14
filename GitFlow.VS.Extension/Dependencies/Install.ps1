@@ -7,8 +7,16 @@ Param
 (
 	[Parameter(Mandatory=$True)] [string] $gitInstallPath
 )
-Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
+if (Get-Command 'az' -errorAction SilentlyContinue)
+{
+     Write-Host "Azure Cli exists"
+}
+else
+{
+     Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
+}
 az extension add --name azure-devops
+
 $installationPath = Split-Path $MyInvocation.MyCommand.Path
 $targetFolder = $installationPath
 $binaries = Join-Path $installationPath "binaries"
@@ -17,14 +25,7 @@ $gitLocation = Join-Path $gitInstallPath "bin"
 
 Write-Host "Copy binaries to Git installation directory " + $gitLocation
 
-Copy-Item -Path "$binaries\*.*" -Destination "$gitLocation" -Force -Verbose
-
-#Check if gitflow need to be installed
-#if(Test-Path (Join-Path $gitLocation "git-flow"))
-#{
-#    Write-Host "GitFlow already installed"
-#    exit
-#}
+Copy-Item -Path "$binaries\*.*" -Destination "$gitLocation" -Force
 
 #Run gitflow install script
 $installScript = Join-Path $installationPath "gitflow\contrib\msysgit-install.cmd"
@@ -37,7 +38,6 @@ $p = New-Object System.Diagnostics.Process
 $p.StartInfo = $pinfo
 $p.Start() | Out-Null
 $p.WaitForExit() 
-
 Write-Host "Installation done!"
 
 
