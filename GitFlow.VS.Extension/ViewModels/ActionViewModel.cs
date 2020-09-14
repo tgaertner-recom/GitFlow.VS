@@ -93,11 +93,13 @@ namespace GitFlowVS.Extension.ViewModels
         public ActionViewModel(GitFlowActionSection te)
             : base(te)
         {
+            FeaturePullRequestTitle = string.Empty;
             FeaturePullRequestBranch = true;
             FeatureDeleteLocalBranch = false;
             FeatureDeleteRemoteBranch = false;
             FeatureSquash = false;
             FeatureNoFastForward = false;
+            BugFixPullRequestTitle = string.Empty;
             BugFixPullRequestBranch = true;
             BugfixDeleteLocalBranch = false;
             BugfixDeleteRemoteBranch = false;
@@ -652,7 +654,7 @@ namespace GitFlowVS.Extension.ViewModels
                 var properties = new Dictionary<string, string>
                 {
                     {"FeaturePullRequest", FeaturePullRequestBranch.ToString()},
-                    {"FeaturePullRequestTitle", FeaturePullRequestTitle.ToString()},
+                    {"FeaturePullRequestTitle", FeaturePullRequestTitle},
                     {"RebaseOnDevelopmentBranch", FeatureRebaseOnDevelopmentBranch.ToString()},
                     {"DeleteLocalBranch", FeatureDeleteLocalBranch.ToString()},
                     {"DeleteRemoteBranch", FeatureDeleteRemoteBranch.ToString()},
@@ -707,7 +709,7 @@ namespace GitFlowVS.Extension.ViewModels
                 var properties = new Dictionary<string, string>
                 {
                     {"BugFixPullRequest", BugFixPullRequestBranch.ToString()},
-                    {"BugFixPullRequestTitle", BugFixPullRequestTitle.ToString()},
+                    {"BugFixPullRequestTitle", BugFixPullRequestTitle},
                     {"RebaseOnDevelopmentBranch", BugfixRebaseOnDevelopmentBranch.ToString()},
                     {"DeleteLocalBranch", BugfixDeleteLocalBranch.ToString()},
                     {"DeleteRemoteBranch", BugfixDeleteRemoteBranch.ToString()},
