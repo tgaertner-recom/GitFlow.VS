@@ -7,38 +7,77 @@ Param
 (
 	[Parameter(Mandatory=$True)] [string] $gitInstallPath
 )
-if (Get-Command 'az' -errorAction SilentlyContinue)
+if (Get-Command 'gh' -CommandType Application -ErrorAction SilentlyContinue)
 {
-     Write-Host "Azure Cli exists"
+     Write-Host "GitHub CLI exists"
 }
 else
 {
-     Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
+     try
+     {
+          $site = Invoke-WebRequest -Uri https://cli.github.com
+          $fileName = 'GitHubCLI.msi'
+          $filePath = (".\" + $fileName)
+
+          #Write-Host $site.Links
+          $site.Links | ForEach-Object {
+               if ($_.href -match '(gh[_\d\w\.]+\.msi)$')
+               {
+                    Write-Host "Downloading " $Matches.1
+                    Invoke-WebRequest -Uri $_.href -OutFile $filePath
+                    break
+               }
+          }
+          
+          If (Test-Path -Path $filePath)
+          {
+               Write-Host "Installing GitHub CLI"
+               Start-Process msiexec.exe -Wait -ArgumentList ("/I {0} /quiet" -f $fileName)
+               Remove-Item $filePath
+          }
+          else
+          {
+               throw "missing file"
+          }
+     }
+     catch
+     {          
+          Write-Host "Automatic download or installation of GitHub CLI failed, visit https://cli.github.com and install manually."          
+     }
 }
-az extension add --name azure-devops
 
 $installationPath = Split-Path $MyInvocation.MyCommand.Path
-$targetFolder = $installationPath
 $binaries = Join-Path $installationPath "binaries"
-$gitFlowFolder = Join-Path $installationPath "gitflow"
 $gitLocation = Join-Path $gitInstallPath "bin"
 
-Write-Host "Copy binaries to Git installation directory " + $gitLocation
+try
+{
+     Write-Host "Copy binaries to Git installation directory " + $gitLocation
+     Copy-Item -Path "$binaries\*.*" -Destination "$gitLocation" -Force
+}
+catch
+{          
+     Write-Host "Copying failed, elevated user rights might be required"
+}
 
-Copy-Item -Path "$binaries\*.*" -Destination "$gitLocation" -Force
+try
+{
+     Write-Host "Execute msysgit installation"
+     #Run gitflow install script
+     $installScript = Join-Path $installationPath "gitflow\contrib\msysgit-install.cmd"
+     $pinfo = New-Object System.Diagnostics.ProcessStartInfo
+     $pinfo.FileName = $installScript
+     $pinfo.UseShellExecute = $true
+     $pinfo.Arguments = """$gitInstallPath"""
 
-#Run gitflow install script
-$installScript = Join-Path $installationPath "gitflow\contrib\msysgit-install.cmd"
-$pinfo = New-Object System.Diagnostics.ProcessStartInfo
-$pinfo.FileName = $installScript
-$pinfo.UseShellExecute = $true
-$pinfo.Arguments = """$gitInstallPath"""
+     $p = New-Object System.Diagnostics.Process
+     $p.StartInfo = $pinfo
+     $p.Start() | Out-Null
+     $p.WaitForExit()
 
-$p = New-Object System.Diagnostics.Process
-$p.StartInfo = $pinfo
-$p.Start() | Out-Null
-$p.WaitForExit() 
-Write-Host "Installation done!"
-
-
-
+     Write-Host "Installation done!"
+}
+catch
+{          
+     Write-Host "Installation of msysgit failed"
+}
