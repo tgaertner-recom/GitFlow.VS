@@ -1,0 +1,3 @@
+[submodule "GitFlow.VS.Extension/Dependencies/gitflow"]
+	path = GitFlow.VS.Extension/Dependencies/gitflow
+	url = https://github.com/tgaertner-recom/gitflow-withPR.git
